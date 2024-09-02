@@ -4,11 +4,12 @@ import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
-} from "../../utils/helpers";
+} from "../../utilities/helpers";
 
 const order = {
   id: "ABCDEF",
   customer: "Jonas",
+  status: "",
   phone: "123456789",
   address: "Arroios, Lisbon , Portugal",
   priority: true,
@@ -41,8 +42,7 @@ const order = {
   priorityPrice: 19,
 };
 
-function Order() {
-  // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
+const Order = () => {
   const {
     id,
     status,
@@ -81,6 +81,6 @@ function Order() {
       </div>
     </div>
   );
-}
+};
 
 export default Order;
