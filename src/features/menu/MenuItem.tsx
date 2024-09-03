@@ -4,7 +4,7 @@ interface MenuItemProp {
   pizza: Pizza;
 }
 export interface Pizza {
-  id: string;
+  pizzaId: string;
   name: string;
   unitPrice: number;
   ingredients: [string];
@@ -13,7 +13,7 @@ export interface Pizza {
 }
 
 const MenuItem = ({
-  pizza: { id, name, unitPrice, ingredients, soldOut, imageUrl },
+  pizza: { pizzaId, name, unitPrice, ingredients, soldOut, imageUrl },
 }: MenuItemProp) => {
   return (
     <li>

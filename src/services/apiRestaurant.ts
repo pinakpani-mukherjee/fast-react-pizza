@@ -1,3 +1,5 @@
+import { orderProp } from "../features/order/CreateOrder";
+
 const API_URL = 'https://react-fast-pizza-api.onrender.com/api';
 
 export async function getMenu() {
@@ -18,7 +20,7 @@ export async function getOrder(id:string) {
   return data;
 }
 
-export async function createOrder(newOrder:any) {
+export async function createOrder(newOrder:orderProp) {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: 'POST',
