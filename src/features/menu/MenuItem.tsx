@@ -1,6 +1,9 @@
 import { formatCurrency } from "../../utilities/helpers";
 
-interface MenuProp {
+interface MenuItemProp {
+  pizza: Pizza;
+}
+export interface Pizza {
   id: string;
   name: string;
   unitPrice: number;
@@ -10,13 +13,8 @@ interface MenuProp {
 }
 
 const MenuItem = ({
-  id,
-  name,
-  unitPrice,
-  ingredients,
-  soldOut,
-  imageUrl,
-}: MenuProp) => {
+  pizza: { id, name, unitPrice, ingredients, soldOut, imageUrl },
+}: MenuItemProp) => {
   return (
     <li>
       <img src={imageUrl} alt={name} />
