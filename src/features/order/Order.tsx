@@ -1,57 +1,47 @@
 // Test ID: IIDSAT
 
+import { useLoaderData } from "react-router-dom";
+import { getOrder } from "../../services/apiRestaurant";
 import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
 } from "../../utilities/helpers";
+import { Pizza } from "../menu/MenuItem";
 
-const order = {
-  id: "ABCDEF",
-  customer: "Jonas",
-  status: "",
-  phone: "123456789",
-  address: "Arroios, Lisbon , Portugal",
-  priority: true,
-  estimatedDelivery: "2027-04-25T10:00:00",
-  cart: [
-    {
-      pizzaId: 7,
-      name: "Napoli",
-      quantity: 3,
-      unitPrice: 16,
-      totalPrice: 48,
-    },
-    {
-      pizzaId: 5,
-      name: "Diavola",
-      quantity: 2,
-      unitPrice: 16,
-      totalPrice: 32,
-    },
-    {
-      pizzaId: 3,
-      name: "Romana",
-      quantity: 1,
-      unitPrice: 15,
-      totalPrice: 15,
-    },
-  ],
-  position: "-9.000,38.000",
-  orderPrice: 95,
-  priorityPrice: 19,
+interface orderProp {
+  id: string;
+  customer: string;
+  status: string;
+  phone: string;
+  address: string;
+  priority: boolean;
+  estimatedDelivery: string;
+  cart: [Pizza];
+  position: string;
+  orderPrice: number;
+  priorityPrice: number;
+}
+
+export const loader = async ({ params }: any) => {
+  const order = await getOrder(params.orderId);
+  return order;
 };
 
 const Order = () => {
   const {
     id,
+    customer,
     status,
+    phone,
+    address,
     priority,
-    priorityPrice,
-    orderPrice,
     estimatedDelivery,
     cart,
-  } = order;
+    position,
+    orderPrice,
+    priorityPrice,
+  } = useLoaderData() as orderProp;
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
