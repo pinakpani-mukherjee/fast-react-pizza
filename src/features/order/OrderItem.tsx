@@ -1,28 +1,28 @@
 import { formatCurrency } from "../../utilities/helpers";
 
-interface ItemProp {
+export interface ItemProp {
   quantity: number;
   name: string;
   totalPrice: number;
 }
-interface OrderItemProp {
+export interface OrderItemProp {
   item: ItemProp;
-  isLoadingIngredients: boolean;
-  ingredients: [string];
+  //isLoadingIngredients: boolean;
+  //ingredients: [string];
 }
 
 const OrderItem = ({
   item: { quantity, name, totalPrice },
-  isLoadingIngredients,
-  ingredients,
+  //isLoadingIngredients,
+  //ingredients,
 }: OrderItemProp) => {
   return (
-    <li>
-      <div>
+    <li className="py-3">
+      <div className="items flex justify-between gap-4 text-sm">
         <p>
-          <span>{quantity}&times;</span> {name}
+          <span className="font-bold">{quantity}&times;</span> {name}
         </p>
-        <p>{formatCurrency(totalPrice)}</p>
+        <p className="font-bold">{formatCurrency(totalPrice)}</p>
       </div>
     </li>
   );

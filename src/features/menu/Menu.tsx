@@ -12,9 +12,9 @@ const Menu = () => {
   console.log(menu);
   return (
     <div>
-      <ul>
+      <ul className="divide-y divide-stone-200 px-2">
         {menu.map((pizza) => (
-          <MenuItem pizza={pizza} key={pizza.id}></MenuItem>
+          <MenuItem pizza={pizza} key={pizza.pizzaId}></MenuItem>
         ))}
       </ul>
     </div>

@@ -23,7 +23,9 @@ const CreateUser = () => {
 
       {username !== "" && (
         <div>
-          <Button isDisabled={false}>Start ordering</Button>
+          <Button type="primary" isDisabled={false}>
+            Start ordering
+          </Button>
         </div>
       )}
     </form>
