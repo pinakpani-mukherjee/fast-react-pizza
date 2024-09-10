@@ -2,6 +2,7 @@ import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { Pizza } from "../menu/MenuItem";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
+import { useAppSelector } from "../../store/store";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str: string) =>
@@ -65,7 +66,7 @@ export const action = async ({ request }: any) => {
 const CreateOrder = () => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-
+  const username = useAppSelector((state) => state.user.username);
   const formErrors = useActionData() as { [errorProp: string]: any };
 
   const cart = fakeCart;
@@ -83,6 +84,7 @@ const CreateOrder = () => {
               name="customer"
               required
               className="input w-full"
+              defaultValue={username}
             />
           </div>
         </div>
