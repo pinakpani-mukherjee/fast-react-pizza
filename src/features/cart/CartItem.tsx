@@ -1,19 +1,24 @@
-import Button from "../../ui/Button";
+import { getCurrentQuantityById } from "../../store/features/cartSlice";
+import { useAppSelector } from "../../store/store";
 import { formatCurrency } from "../../utilities/helpers";
+import DeleteItem from "./DeleteItem";
+import UpdateItemQuantity from "./UpdateItemQuantity";
 
 interface cartItemProp {
   cartPizza: cartItem;
 }
-interface cartItem {
-  pizzaId: string;
+export interface cartItem {
+  id: string;
   name: string;
   quantity: number;
+  unitPrice: number;
   totalPrice: number;
 }
 
 const CartItem = ({
-  cartPizza: { pizzaId, name, quantity, totalPrice },
+  cartPizza: { id, name, quantity, totalPrice },
 }: cartItemProp) => {
+  const currentQuantity = useAppSelector(getCurrentQuantityById(id));
   return (
     <li className="py-3 sm:flex sm:items-center sm:justify-between">
       <p className="mb-1 sm:mb-0">
@@ -21,9 +26,8 @@ const CartItem = ({
       </p>
       <div className="flex items-center sm:gap-6">
         <p className="text-sm font-bold">{formatCurrency(totalPrice)}</p>
-        <Button type="small" isDisabled={false}>
-          Delete
-        </Button>
+        <UpdateItemQuantity updateId={id} currentQuantity={currentQuantity} />
+        <DeleteItem deleteId={id} />
       </div>
     </li>
   );
